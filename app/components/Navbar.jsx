@@ -14,8 +14,8 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
     { name: "Events", path: "/events" },
-    { name: "Join Us", path: "/join" },
-    { name: "Contact Us", path: "/contact" },
+    { name: "Join Us", path: "#" },
+    { name: "Contact Us", path: "#" },
   ];
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const Navbar = () => {
                     className={`px-3 py-2 rounded-md text-sm font-medium ${
                       pathname === item.path
                         ? "text-blue-600"
-                        : "text-gray-600 hover:text-blue-600"
+                        : "text-gray-900 hover:text-blue-600"
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}

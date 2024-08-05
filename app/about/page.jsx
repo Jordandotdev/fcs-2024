@@ -169,10 +169,10 @@ const AboutPage = () => {
   return (
     <div className="bg-white text-gray-800 min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-80 overflow-hidden">
+      <section className="relative h-[70vh] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-75"></div>
         <img
-          src="/path-to-your-hero-image.jpg"
+          src="/images/fcs-tean.jpg"
           alt="APIIT FCS"
           className="w-full h-full object-cover"
         />
@@ -187,7 +187,14 @@ const AboutPage = () => {
       <section className="max-w-6xl mx-auto py-16 px-4">
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(to right, #2563EB, #8B5CF6)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
               Shaping the Future of IT
             </span>
           </h2>

@@ -125,7 +125,7 @@ const EventsPage = () => {
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-80 overflow-hidden">
+      <section className="relative h-[70vh] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-75"></div>
         <img
           src="/images/events-hero.jpg"
