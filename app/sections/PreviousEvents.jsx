@@ -7,7 +7,7 @@ const EventCard = ({ event, isExpanded, onToggle }) => {
   return (
     <motion.div
       layout
-      className={`bg-gray-900 rounded-lg p-4 sm:p-6 cursor-pointer ${
+      className={`bg-gray-900 bg-opacity-70 rounded-lg p-4 sm:p-6 cursor-pointer ${
         isExpanded ? "col-span-1 md:col-span-2 row-span-1 md:row-span-2" : ""
       }`}
       onClick={onToggle}
@@ -101,7 +101,7 @@ const EventsAndWorkshopsSection = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-12 sm:py-20 px-4">
+    <section className=" text-white py-12 sm:py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           className="text-4xl sm:text-5xl md:text-7xl font-bold mb-8 sm:mb-12 text-center"
@@ -111,9 +111,10 @@ const EventsAndWorkshopsSection = () => {
         >
           <span
             style={{
-              background: "linear-gradient(to right, #ffffff, #a0aec0)",
+              background: "linear-gradient(to right,#60A5FA, #A78BFA, #F87171)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
               display: "inline-block",
             }}
           >
@@ -143,7 +144,7 @@ const EventsAndWorkshopsSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <p className="text-lg sm:text-xl text-gray-400 mb-4 sm:mb-6">
+          <p className="text-lg sm:text-xl text-gray-500 mb-4 sm:mb-6">
             Don't miss out on these exciting opportunities to learn, grow, and
             connect!
           </p>

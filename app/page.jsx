@@ -12,12 +12,15 @@ export default function Home() {
   return (
     <div>
       <HeroSection />
-      <AboutUsSection />
-      <EventSlider />
-      {/* <TechStackMasterySection /> */}
-      <KnowledgeHubSection />
-      <EventsAndWorkshopsSection />
-      <JoinFCSSection />
+      <div className="bg-gradient-to-br from-gray-200 to-white">
+        <AboutUsSection />
+
+        <EventSlider />
+        {/* <TechStackMasterySection /> */}
+        <KnowledgeHubSection />
+        <EventsAndWorkshopsSection />
+        <JoinFCSSection />
+      </div>
       {/* <SocietyFeatures /> */}
     </div>
   );

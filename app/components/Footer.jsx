@@ -30,7 +30,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-black text-white py-16 relative overflow-hidden">
+    <footer className=" text-white py-16 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4">
         {/* Animated background elements */}
         {[FaCode, FaLaptopCode, FaServer].map((Icon, index) => (
@@ -65,10 +65,14 @@ const Footer = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <img src="/images/logo.png" alt="FCS Logo" />
+              <img
+                src="/images/logo.png"
+                alt="FCS Logo"
+                className="h-12 w-auto"
+              />
             </motion.div>
             <motion.p
-              className="text-gray-400 mb-6"
+              className="text-gray-600 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -149,7 +153,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-gray-800 text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
+                className="bg-gray-200  text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
               />
               <button
                 type="submit"

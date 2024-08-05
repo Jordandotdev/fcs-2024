@@ -15,7 +15,7 @@ const DomainCard = ({ icon: Icon, title, description, color }) => {
 
   return (
     <motion.div
-      className="bg-gray-900 rounded-lg p-6 cursor-pointer relative overflow-hidden"
+      className="bg-gray-900 bg-opacity-70 rounded-lg p-6 cursor-pointer relative overflow-hidden"
       whileHover={{ scale: 1.05 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
@@ -88,7 +88,7 @@ const KnowledgeHubSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 overflow-hidden bg-black relative">
+    <section className="py-20 px-4 overflow-hidden  relative">
       {/* Animated background grid */}
       <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 gap-1 opacity-10">
         {[...Array(64)].map((_, i) => (
@@ -108,16 +108,17 @@ const KnowledgeHubSection = () => {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2
-          className="text-5xl md:text-7xl font-bold mb-16 text-center"
+          className="text-5xl md:text-7xl font-bold pb-16 text-center"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <span
             style={{
-              background: "linear-gradient(to right, #ffffff, #a0aec0)",
+              background: "linear-gradient(to right,#60A5FA, #A78BFA, #F87171)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
               display: "inline-block",
             }}
           >
@@ -126,7 +127,7 @@ const KnowledgeHubSection = () => {
         </motion.h2>
 
         <motion.p
-          className="text-xl md:text-2xl text-gray-300 text-center mb-16"
+          className="text-xl md:text-2xl text-gray-600 text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -152,7 +153,7 @@ const KnowledgeHubSection = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-gray-500 mb-8">
             Unlock your potential in these cutting-edge IT domains with APIIT
             FCS.
           </p>

@@ -12,7 +12,7 @@ const JoinFCSSection = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className="bg-black text-white py-20 px-4 overflow-hidden relative min-h-screen flex items-center justify-center">
+    <section className=" text-white py-20 px-4 overflow-hidden relative min-h-screen flex items-center justify-center">
       {/* Animated background grid */}
       <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 gap-1 opacity-10">
         {[...Array(64)].map((_, i) => (
@@ -39,7 +39,7 @@ const JoinFCSSection = () => {
         >
           <span
             style={{
-              background: "linear-gradient(to right, #ffffff, #a0aec0)",
+              background: "linear-gradient(to right,#60A5FA, #A78BFA, #F87171)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               display: "inline-block",
@@ -50,7 +50,7 @@ const JoinFCSSection = () => {
         </motion.h2>
 
         <motion.p
-          className="text-xl md:text-2xl text-gray-300 text-center mb-12"
+          className="text-xl md:text-2xl text-gray-600 text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}

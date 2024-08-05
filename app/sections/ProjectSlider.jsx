@@ -108,7 +108,7 @@ const EventsSection = () => {
   }, []);
 
   return (
-    <section className="bg-black py-20 px-4 overflow-hidden min-h-screen flex items-center">
+    <section className=" py-20 px-4 overflow-hidden min-h-screen flex items-center">
       <div className="max-w-7xl mx-auto w-full">
         <motion.h2
           className="text-5xl md:text-7xl font-bold mb-16 text-center"
@@ -118,9 +118,11 @@ const EventsSection = () => {
         >
           <span
             style={{
-              background: "linear-gradient(to right, #ffffff, #a0aec0)",
+              background: "linear-gradient(to right,#60A5FA, #A78BFA, #F87171)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              display: "inline-block",
             }}
           >
             Events & Workshops

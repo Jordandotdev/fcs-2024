@@ -42,7 +42,7 @@ const SocietyFeatures = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-20 px-4">
+    <section className=" text-white py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           className="text-4xl md:text-5xl font-bold mb-12 text-center"

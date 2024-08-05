@@ -6,13 +6,16 @@ import {
   useTransform,
   useMotionValue,
   useSpring,
+  AnimatePresence,
 } from "framer-motion";
+import Link from "next/link";
 
 const HeroSection = () => {
   const containerRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -43,19 +46,28 @@ const HeroSection = () => {
   }, [mouseX, mouseY]);
 
   const rotateX = useSpring(
-    useTransform(mouseY, [0, windowSize.height], [10, -10])
+    useTransform(mouseY, [0, windowSize.height], [5, -5])
   );
   const rotateY = useSpring(
-    useTransform(mouseX, [0, windowSize.width], [-10, 10])
+    useTransform(mouseX, [0, windowSize.width], [-5, 5])
   );
+
+  const codeSnippets = [
+    `const future = await FullstackSociety.innovate();`,
+    `if (you.join()) { skills.levelUp(); }`,
+    `for (let dream of your.dreams) { APIIT_FCS.make(dream, 'reality'); }`,
+    `while (learning) { opportunities.create(); }`,
+  ];
 
   return (
     <motion.div
       ref={containerRef}
-      className="relative min-h-screen overflow-hidden bg-black text-white font-sans"
+      className="relative min-h-screen overflow-hidden bg-gray-900 text-white font-sans"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
       {/* Dynamic 3D background */}
       <motion.div
@@ -67,29 +79,75 @@ const HeroSection = () => {
           perspective: "1000px",
         }}
       >
-        {[...Array(50)].map((_, index) => (
-          <motion.div
-            key={index}
-            className="absolute rounded-full opacity-20"
-            style={{
-              background: `radial-gradient(circle, rgba(99,102,241,1) 0%, rgba(99,102,241,0) 70%)`,
-              width: Math.random() * 200 + 50,
-              height: Math.random() * 200 + 50,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              translateZ: Math.random() * 400 - 200,
-            }}
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        ))}
+        <AnimatePresence>
+          {isHovering ? (
+            <motion.div
+              key="hoverPattern"
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {[...Array(100)].map((_, index) => (
+                <motion.div
+                  key={index}
+                  className="absolute rounded-full"
+                  style={{
+                    background: `radial-gradient(circle, rgba(99,102,241,0.7) 0%, rgba(99,102,241,0) 70%)`,
+                    width: Math.random() * 100 + 20,
+                    height: Math.random() * 100 + 20,
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    translateZ: Math.random() * 200 - 100,
+                  }}
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.7, 0.3],
+                  }}
+                  transition={{
+                    duration: Math.random() * 3 + 2,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                />
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="defaultPattern"
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {[...Array(50)].map((_, index) => (
+                <motion.div
+                  key={index}
+                  className="absolute rounded-full opacity-20"
+                  style={{
+                    background: `radial-gradient(circle, rgba(99,102,241,1) 0%, rgba(99,102,241,0) 70%)`,
+                    width: Math.random() * 200 + 50,
+                    height: Math.random() * 200 + 50,
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    translateZ: Math.random() * 400 - 200,
+                  }}
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.1, 0.3, 0.1],
+                  }}
+                  transition={{
+                    duration: Math.random() * 5 + 5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       {/* Content */}
@@ -106,7 +164,8 @@ const HeroSection = () => {
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                backgroundImage: "linear-gradient(to right, #4B5563, #FFFFFF)",
+                backgroundImage:
+                  "linear-gradient(to right, #4B5563, #FFFFFF, #6366F1)",
               }}
             >
               APIIT FCS
@@ -124,55 +183,55 @@ const HeroSection = () => {
         </motion.div>
 
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-          <motion.button
-            className="relative px-6 sm:px-8 py-3 rounded-full overflow-hidden group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-gray-500 to-white opacity-70 group-hover:opacity-100 transition-opacity duration-300"></span>
-            <span className="relative text-white font-bold text-base sm:text-lg">
-              Join Now
-            </span>
-          </motion.button>
-          <motion.button
-            className="px-6 sm:px-8 py-3 rounded-full bg-transparent border-2 border-gray-500 text-white font-bold text-base sm:text-lg hover:bg-gray-500 hover:text-white transition duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Our Projects
-          </motion.button>
+          <Link href="/join">
+            <motion.button
+              className="relative px-6 sm:px-8 py-3 rounded-full overflow-hidden group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-70 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative text-white font-bold text-base sm:text-lg">
+                Join Now
+              </span>
+            </motion.button>
+          </Link>
+          <Link href="/events">
+            <motion.button
+              className="px-6 sm:px-8 py-3 rounded-full bg-transparent border-2 border-indigo-500 text-indigo-400 font-bold text-base sm:text-lg hover:bg-indigo-500 hover:text-white transition duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Our Events
+            </motion.button>
+          </Link>
         </div>
       </div>
 
       {/* Floating code snippets */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
-          className="absolute bottom-10 left-4 sm:left-10 text-xs sm:text-sm font-mono opacity-50 whitespace-nowrap"
-          animate={{
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        >
-          <pre>{`const future = await FullstackSociety.innovate();`}</pre>
-        </motion.div>
-
-        <motion.div
-          className="absolute top-10 right-4 sm:right-10 text-xs sm:text-sm font-mono opacity-50 whitespace-nowrap"
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        >
-          <pre>{`if (you.join()) { skills.levelUp(); }`}</pre>
-        </motion.div>
+        {codeSnippets.map((snippet, index) => (
+          <motion.div
+            key={index}
+            className="absolute text-xs sm:text-sm font-mono opacity-50 whitespace-nowrap"
+            style={{
+              top: `${25 * (index + 1)}%`,
+              left: index % 2 === 0 ? "10%" : "auto",
+              right: index % 2 === 1 ? "10%" : "auto",
+            }}
+            animate={{
+              y: [0, -10, 0],
+              x: index % 2 === 0 ? [0, 10, 0] : [0, -10, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              repeatType: "reverse",
+              delay: index * 0.5,
+            }}
+          >
+            <pre>{snippet}</pre>
+          </motion.div>
+        ))}
       </div>
 
       {/* Scroll indicator */}
@@ -188,7 +247,7 @@ const HeroSection = () => {
         }}
       >
         <svg
-          className="w-6 h-6 text-gray-400"
+          className="w-6 h-6 text-indigo-400"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
