@@ -13,10 +13,10 @@ import {
 const EventCard = ({ event }) => {
   return (
     <motion.div
-      className="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+      className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
       whileHover={{ y: -5 }}
     >
-      <div className="h-48 bg-gray-800 relative">
+      <div className="h-48 bg-gray-200 relative">
         <img
           src={event.image}
           alt={event.title}
@@ -27,8 +27,8 @@ const EventCard = ({ event }) => {
         </div>
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-        <p className="text-gray-400 mb-4">{event.description}</p>
+        <h3 className="text-xl font-bold mb-2 text-gray-800">{event.title}</h3>
+        <p className="text-gray-600 mb-4">{event.description}</p>
         <div className="flex items-center text-gray-500 mb-2">
           <FaCalendar className="mr-2" />
           <span>{event.date}</span>
@@ -46,13 +46,13 @@ const EventCard = ({ event }) => {
           <span>{event.capacity} participants</span>
         </div>
       </div>
-      <div className="px-6 py-4 bg-gray-800 flex justify-between items-center">
+      <div className="px-6 py-4 bg-gray-100 flex justify-between items-center">
         {event.status === "completed" ? (
-          <span className="text-green-500 flex items-center">
+          <span className="text-green-600 flex items-center">
             <FaCheckCircle className="mr-2" /> Completed
           </span>
         ) : (
-          <span className="text-yellow-500 flex items-center">
+          <span className="text-yellow-600 flex items-center">
             <FaHourglassHalf className="mr-2" /> Upcoming
           </span>
         )}
@@ -123,7 +123,7 @@ const EventsPage = () => {
   }, [filter, searchTerm]);
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-gray-50 text-gray-800 min-h-screen">
       {/* Hero Section */}
       <section className="relative h-80 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-75"></div>
@@ -146,7 +146,9 @@ const EventsPage = () => {
             <button
               onClick={() => setFilter("all")}
               className={`px-4 py-2 rounded-full ${
-                filter === "all" ? "bg-blue-600" : "bg-gray-800"
+                filter === "all"
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-800"
               }`}
             >
               All Events
@@ -154,7 +156,9 @@ const EventsPage = () => {
             <button
               onClick={() => setFilter("upcoming")}
               className={`px-4 py-2 rounded-full ${
-                filter === "upcoming" ? "bg-blue-600" : "bg-gray-800"
+                filter === "upcoming"
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-800"
               }`}
             >
               Upcoming
@@ -162,7 +166,9 @@ const EventsPage = () => {
             <button
               onClick={() => setFilter("completed")}
               className={`px-4 py-2 rounded-full ${
-                filter === "completed" ? "bg-blue-600" : "bg-gray-800"
+                filter === "completed"
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-800"
               }`}
             >
               Completed
@@ -171,7 +177,7 @@ const EventsPage = () => {
           <input
             type="text"
             placeholder="Search events..."
-            className="w-full sm:w-auto px-4 py-2 bg-gray-800 rounded-full"
+            className="w-full sm:w-auto px-4 py-2 bg-white border border-gray-300 rounded-full"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
@@ -201,19 +207,19 @@ const EventsPage = () => {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="bg-gray-900 py-16">
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-16 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-          <p className="text-gray-400 mb-8">
+          <p className="text-gray-100 mb-8">
             Subscribe to our newsletter to get the latest updates on our events.
           </p>
           <form className="flex flex-col sm:flex-row justify-center">
             <input
               type="email"
               placeholder="Enter your email"
-              className="px-4 py-2 mb-4 sm:mb-0 sm:mr-4 bg-gray-800 rounded-full w-full sm:w-auto"
+              className="px-4 py-2 mb-4 sm:mb-0 sm:mr-4 bg-white text-gray-800 rounded-full w-full sm:w-auto"
             />
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+            <button className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-2 px-6 rounded-full">
               Subscribe
             </button>
           </form>

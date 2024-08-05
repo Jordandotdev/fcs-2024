@@ -14,33 +14,31 @@ const AboutSection = () => {
       icon: <FaGraduationCap />,
       title: "Academic Excellence",
       description: "Supporting students in their IT education journey",
-      color: "from-blue-400 to-blue-600",
+      color: "from-blue-500 to-blue-700",
     },
     {
       icon: <FaLaptopCode />,
       title: "Practical Skills",
       description: "Bridging the gap between theory and industry practices",
-      color: "from-green-400 to-green-600",
+      color: "from-green-500 to-green-700",
     },
     {
       icon: <FaUsers />,
       title: "Networking",
       description: "Connecting students with industry professionals",
-      color: "from-purple-400 to-purple-600",
+      color: "from-purple-500 to-purple-700",
     },
     {
       icon: <FaChalkboardTeacher />,
       title: "Workshops & Seminars",
       description:
         "Regular learning opportunities on cutting-edge technologies",
-      color: "from-red-400 to-red-600",
+      color: "from-red-500 to-red-700",
     },
   ];
 
   return (
-    <section className="  text-white py-20 px-4 relative overflow-hidden">
-      {/* Animated background pattern */}
-
+    <section className="bg-white text-gray-800 py-20 px-4 relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between mb-16">
           <motion.div
@@ -53,7 +51,7 @@ const AboutSection = () => {
               <span
                 style={{
                   background:
-                    "linear-gradient(to right, #60A5FA, #A78BFA, #F87171)",
+                    "linear-gradient(to right, #2563EB, #4F46E5, #7C3AED)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   display: "inline-block",
@@ -78,12 +76,17 @@ const AboutSection = () => {
             initial={{ opacity: 0, rotate: -10 }}
             animate={{ opacity: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="md:w-1/3"
+            className="md:w-1/3 flex flex-col items-center"
           >
             <img
-              src="/images/logo-2.png"
+              src="/images/logo-3.png"
               alt="APIIT FCS Logo"
-              className="w-64 h-auto filter drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+              className="w-64 h-auto mb-4"
+            />
+            <img
+              src="/images/apiit.jpg"
+              alt="University Logo"
+              className="w-48 h-auto"
             />
           </motion.div>
         </div>
@@ -97,7 +100,7 @@ const AboutSection = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="flex items-start bg-gray-900 bg-opacity-70 p-6 rounded-lg"
+              className="flex items-start bg-gray-100 p-6 rounded-lg shadow-md"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
@@ -107,8 +110,10 @@ const AboutSection = () => {
                 {feature.icon}
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-300">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.description}</p>
               </div>
             </motion.div>
           ))}

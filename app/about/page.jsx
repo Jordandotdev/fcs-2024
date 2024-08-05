@@ -41,21 +41,21 @@ const AboutPage = () => {
       { role: "Tech Lead", name: "Ryan Patel" },
       { role: "Event Coordinator", name: "Emma Rodriguez" },
     ],
-    // Add data for other years...
   };
+
   const tabContent = {
     mission: (
       <div>
-        <h3 className="text-2xl font-bold mb-4">
+        <h3 className="text-2xl font-bold mb-4 text-gray-800">
           Empowering Future Tech Leaders
         </h3>
-        <p className="mb-4">
+        <p className="mb-4 text-gray-600">
           APIIT FCS is dedicated to fostering a community of innovative and
           skilled IT professionals. Our mission is to bridge the gap between
           academic knowledge and industry demands, preparing our members for
           successful careers in the ever-evolving tech landscape.
         </p>
-        <ul className="list-disc pl-5 space-y-2">
+        <ul className="list-disc pl-5 space-y-2 text-gray-600">
           <li>Provide cutting-edge workshops and seminars</li>
           <li>Facilitate networking opportunities with industry leaders</li>
           <li>Encourage collaborative projects and research</li>
@@ -65,8 +65,10 @@ const AboutPage = () => {
     ),
     history: (
       <div>
-        <h3 className="text-2xl font-bold mb-4">A Legacy of Excellence</h3>
-        <div className="space-y-4">
+        <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          A Legacy of Excellence
+        </h3>
+        <div className="space-y-4 text-gray-600">
           <div>
             <h4 className="font-semibold">2010 - Founding</h4>
             <p>
@@ -98,12 +100,14 @@ const AboutPage = () => {
     team: (
       <div>
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-2xl font-bold">Our Executive Committee</h3>
+          <h3 className="text-2xl font-bold text-gray-800">
+            Our Executive Committee
+          </h3>
           <div className="relative">
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="appearance-none bg-gray-800 border border-gray-700 text-white py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-gray-700 focus:border-gray-500"
+              className="appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
             >
               {years.map((year) => (
                 <option key={year} value={year}>
@@ -111,7 +115,7 @@ const AboutPage = () => {
                 </option>
               ))}
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <FaChevronDown />
             </div>
           </div>
@@ -127,19 +131,20 @@ const AboutPage = () => {
           >
             {teamMembers[selectedYear].map((member, index) => (
               <div key={index} className="text-center">
-                <div className="w-24 h-24 bg-gray-700 rounded-full mx-auto mb-2"></div>
-                <h4 className="font-semibold">{member.role}</h4>
-                <p className="text-sm text-gray-400">{member.name}</p>
+                <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-2"></div>
+                <h4 className="font-semibold text-gray-800">{member.role}</h4>
+                <p className="text-sm text-gray-600">{member.name}</p>
               </div>
             ))}
           </motion.div>
         </AnimatePresence>
       </div>
     ),
-
     partners: (
       <div>
-        <h3 className="text-2xl font-bold mb-4">Our Valued Partners</h3>
+        <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          Our Valued Partners
+        </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
           {[
             "Partner 1",
@@ -151,9 +156,9 @@ const AboutPage = () => {
           ].map((partner) => (
             <div
               key={partner}
-              className="bg-gray-800 h-24 flex items-center justify-center rounded-lg"
+              className="bg-gray-100 h-24 flex items-center justify-center rounded-lg border border-gray-200"
             >
-              <span className="text-xl font-bold">{partner}</span>
+              <span className="text-xl font-bold text-gray-700">{partner}</span>
             </div>
           ))}
         </div>
@@ -162,7 +167,7 @@ const AboutPage = () => {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-white text-gray-800 min-h-screen">
       {/* Hero Section */}
       <section className="relative h-80 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-75"></div>
@@ -182,11 +187,11 @@ const AboutPage = () => {
       <section className="max-w-6xl mx-auto py-16 px-4">
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
               Shaping the Future of IT
             </span>
           </h2>
-          <p className="text-xl text-center text-gray-300">
+          <p className="text-xl text-center text-gray-600">
             APIIT Fullstack Computer Society is the premier student-led
             organization dedicated to fostering excellence in IT education and
             innovation at Asia Pacific Institute of Information Technology.
@@ -200,7 +205,9 @@ const AboutPage = () => {
               <motion.button
                 key={tab.id}
                 className={`flex items-center px-4 py-2 rounded-full ${
-                  activeTab === tab.id ? "bg-blue-600" : "bg-gray-800"
+                  activeTab === tab.id
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -221,7 +228,7 @@ const AboutPage = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="bg-gray-900 p-8 rounded-lg"
+            className="bg-white p-8 rounded-lg shadow-lg"
           >
             {tabContent[activeTab]}
           </motion.div>
@@ -229,9 +236,9 @@ const AboutPage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="bg-gray-900 py-16">
+      <section className="bg-gray-100 py-16">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-gray-800">
             What We Offer
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -259,13 +266,15 @@ const AboutPage = () => {
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-800 p-6 rounded-lg text-center"
+                className="bg-white p-6 rounded-lg text-center shadow-md"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <feature.icon className="text-4xl mb-4 mx-auto text-blue-500" />
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.desc}</p>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -273,18 +282,18 @@ const AboutPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Join APIIT FCS Today!
           </h2>
-          <p className="text-xl mb-8 text-gray-300">
+          <p className="text-xl mb-8">
             Be part of a community that's shaping the future of technology. Gain
             skills, make connections, and unlock your potential with APIIT FCS.
           </p>
           <motion.button
-            className="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold"
-            whileHover={{ scale: 1.05, backgroundColor: "#3b82f6" }}
+            className="bg-white text-blue-600 px-8 py-3 rounded-full text-lg font-semibold"
+            whileHover={{ scale: 1.05, backgroundColor: "#f0f0f0" }}
             whileTap={{ scale: 0.95 }}
           >
             Become a Member

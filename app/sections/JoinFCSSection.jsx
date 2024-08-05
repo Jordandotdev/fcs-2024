@@ -12,13 +12,13 @@ const JoinFCSSection = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className=" text-white py-20 px-4 overflow-hidden relative min-h-screen flex items-center justify-center">
+    <section className="bg-gray-50 text-gray-800 py-20 px-4 overflow-hidden relative min-h-screen flex items-center justify-center">
       {/* Animated background grid */}
       <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 gap-1 opacity-10">
         {[...Array(64)].map((_, i) => (
           <motion.div
             key={i}
-            className="bg-gray-500"
+            className="bg-gray-300"
             initial={{ opacity: 0 }}
             animate={{ opacity: [0.3, 1, 0.3] }}
             transition={{
@@ -39,7 +39,8 @@ const JoinFCSSection = () => {
         >
           <span
             style={{
-              background: "linear-gradient(to right,#60A5FA, #A78BFA, #F87171)",
+              background:
+                "linear-gradient(to right, #3B82F6, #8B5CF6, #EF4444)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               display: "inline-block",
@@ -58,7 +59,7 @@ const JoinFCSSection = () => {
           Embark on a journey to become a{" "}
           <span
             style={{
-              background: "linear-gradient(to right, #6ee7b7, #3b82f6)",
+              background: "linear-gradient(to right, #10B981, #3B82F6)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -75,10 +76,10 @@ const JoinFCSSection = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <motion.button
-            className="bg-gradient-to-r text-center from-gray-700 to-gray-900 text-white font-bold py-3 px-8 rounded-full text-lg border border-gray-600"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full text-lg"
             whileHover={{
               scale: 1.05,
-              boxShadow: "0 0 15px rgba(255, 255, 255, 0.3)",
+              boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)",
             }}
             whileTap={{ scale: 0.95 }}
           >
@@ -87,7 +88,7 @@ const JoinFCSSection = () => {
 
           {/* Floating icons */}
           <motion.div
-            className="absolute -top-12 -left-12 text-4xl text-blue-400"
+            className="absolute -top-12 -left-12 text-4xl text-blue-500"
             animate={{
               y: [0, -20, 0],
               rotate: [0, 360],
@@ -98,7 +99,7 @@ const JoinFCSSection = () => {
             <FaRocket />
           </motion.div>
           <motion.div
-            className="absolute -bottom-12 -right-12 text-4xl text-purple-400"
+            className="absolute -bottom-12 -right-12 text-4xl text-purple-500"
             animate={{
               y: [0, 20, 0],
               rotate: [360, 0],
@@ -109,7 +110,7 @@ const JoinFCSSection = () => {
             <FaUserAstronaut />
           </motion.div>
           <motion.div
-            className="absolute -top-12 -right-12 text-4xl text-green-400"
+            className="absolute -top-12 -right-12 text-4xl text-green-500"
             animate={{
               x: [0, 20, 0],
               rotate: [0, -360],
@@ -120,7 +121,7 @@ const JoinFCSSection = () => {
             <FaSatellite />
           </motion.div>
           <motion.div
-            className="absolute -bottom-12 -left-12 text-4xl text-yellow-400"
+            className="absolute -bottom-12 -left-12 text-4xl text-yellow-500"
             animate={{
               x: [0, -20, 0],
               rotate: [-360, 0],
@@ -133,7 +134,7 @@ const JoinFCSSection = () => {
         </motion.div>
 
         <motion.p
-          className="text-gray-400 text-center mt-8"
+          className="text-gray-600 text-center mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}

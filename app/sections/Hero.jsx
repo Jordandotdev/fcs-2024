@@ -62,7 +62,7 @@ const HeroSection = () => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative min-h-screen overflow-hidden bg-gray-900 text-white font-sans"
+      className="relative min-h-screen overflow-hidden bg-gray-100 text-gray-900 font-sans"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
@@ -94,7 +94,7 @@ const HeroSection = () => {
                   key={index}
                   className="absolute rounded-full"
                   style={{
-                    background: `radial-gradient(circle, rgba(99,102,241,0.7) 0%, rgba(99,102,241,0) 70%)`,
+                    background: `radial-gradient(circle, rgba(99,102,241,0.3) 0%, rgba(99,102,241,0) 70%)`,
                     width: Math.random() * 100 + 20,
                     height: Math.random() * 100 + 20,
                     left: `${Math.random() * 100}%`,
@@ -103,7 +103,7 @@ const HeroSection = () => {
                   }}
                   animate={{
                     scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.7, 0.3],
+                    opacity: [0.1, 0.3, 0.1],
                   }}
                   transition={{
                     duration: Math.random() * 3 + 2,
@@ -125,9 +125,9 @@ const HeroSection = () => {
               {[...Array(50)].map((_, index) => (
                 <motion.div
                   key={index}
-                  className="absolute rounded-full opacity-20"
+                  className="absolute rounded-full opacity-10"
                   style={{
-                    background: `radial-gradient(circle, rgba(99,102,241,1) 0%, rgba(99,102,241,0) 70%)`,
+                    background: `radial-gradient(circle, rgba(99,102,241,0.9) 0%, rgba(99,102,241,0.1) 70%)`,
                     width: Math.random() * 200 + 50,
                     height: Math.random() * 200 + 50,
                     left: `${Math.random() * 100}%`,
@@ -136,7 +136,7 @@ const HeroSection = () => {
                   }}
                   animate={{
                     scale: [1, 1.2, 1],
-                    opacity: [0.1, 0.3, 0.1],
+                    opacity: [0.05, 0.15, 0.05],
                   }}
                   transition={{
                     duration: Math.random() * 5 + 5,
@@ -165,18 +165,18 @@ const HeroSection = () => {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundImage:
-                  "linear-gradient(to right, #4B5563, #FFFFFF, #6366F1)",
+                  "linear-gradient(to right, #4B5563, #1F2937, #6366F1)",
               }}
             >
               APIIT FCS
             </span>
           </h1>
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-gray-300">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-gray-700">
             Coding the Future, One Stack at a Time
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-400">
+          <p className="text-base sm:text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-600">
             Join us in pushing the boundaries of technology and innovation at
             our university.
           </p>
@@ -197,7 +197,7 @@ const HeroSection = () => {
           </Link>
           <Link href="/events">
             <motion.button
-              className="px-6 sm:px-8 py-3 rounded-full bg-transparent border-2 border-indigo-500 text-indigo-400 font-bold text-base sm:text-lg hover:bg-indigo-500 hover:text-white transition duration-300"
+              className="px-6 sm:px-8 py-3 rounded-full bg-transparent border-2 border-indigo-500 text-indigo-600 font-bold text-base sm:text-lg hover:bg-indigo-500 hover:text-white transition duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -212,7 +212,7 @@ const HeroSection = () => {
         {codeSnippets.map((snippet, index) => (
           <motion.div
             key={index}
-            className="absolute text-xs sm:text-sm font-mono opacity-50 whitespace-nowrap"
+            className="absolute text-xs sm:text-lg font-mono opacity-60 whitespace-nowrap text-gray-700"
             style={{
               top: `${25 * (index + 1)}%`,
               left: index % 2 === 0 ? "10%" : "auto",
@@ -247,7 +247,7 @@ const HeroSection = () => {
         }}
       >
         <svg
-          className="w-6 h-6 text-indigo-400"
+          className="w-6 h-6 text-indigo-600"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"

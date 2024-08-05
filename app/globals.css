@@ -24,28 +24,3 @@
 .animation-delay-2000 {
   animation-delay: 2s;
 }
-.swiper-slide {
-  width: 300px;
-  height: auto;
-}
-
-@media (min-width: 640px) {
-  .swiper-slide {
-    width: 350px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .swiper-slide {
-    width: 400px;
-  }
-}
-
-.swiper-pagination-bullet {
-  background: white;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-  color: white;
-}

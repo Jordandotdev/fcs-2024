@@ -20,7 +20,7 @@ const EventCard = ({ event, index }) => {
   return (
     <motion.div
       ref={ref}
-      className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl"
+      className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -31,19 +31,19 @@ const EventCard = ({ event, index }) => {
           alt={event.title}
           className="w-full h-64 object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <p className="text-white text-sm font-semibold">{event.date}</p>
-          <p className="text-gray-300 text-xs">{event.location}</p>
+          <p className="text-gray-200 text-xs">{event.location}</p>
         </div>
       </div>
       <div className="p-6">
-        <h3 className="text-2xl font-bold text-white mb-2">{event.title}</h3>
-        <p className="text-gray-400 mb-4">{event.description}</p>
+        <h3 className="text-2xl font-bold text-gray-800 mb-2">{event.title}</h3>
+        <p className="text-gray-600 mb-4">{event.description}</p>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-white text-black font-bold py-2 px-4 rounded-full text-sm hover:bg-gray-200 transition duration-300"
+          className="bg-gray-600 text-white font-bold py-2 px-4 rounded-full text-sm hover:bg-gray-700 transition duration-300"
         >
           Learn More
         </motion.button>
@@ -76,14 +76,13 @@ const EventsSection = () => {
       date: "April 5, 2024",
       location: "Computer Science Building",
     },
-
     // Add more events as needed
   ];
 
   const events = [
-    ...originalEvents.slice(-1), // Add last two events at the beginning
+    ...originalEvents.slice(-1),
     ...originalEvents,
-    ...originalEvents.slice(0, 1), // Add first two events at the end
+    ...originalEvents.slice(0, 1),
   ];
   const swiperRef = useRef(null);
 
@@ -108,7 +107,7 @@ const EventsSection = () => {
   }, []);
 
   return (
-    <section className=" py-20 px-4 overflow-hidden min-h-screen flex items-center">
+    <section className="bg-gray-100 py-20 px-4 overflow-hidden min-h-screen flex items-center">
       <div className="max-w-7xl mx-auto w-full">
         <motion.h2
           className="text-5xl md:text-7xl font-bold mb-16 text-center"
@@ -116,17 +115,7 @@ const EventsSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span
-            style={{
-              background: "linear-gradient(to right,#60A5FA, #A78BFA, #F87171)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              display: "inline-block",
-            }}
-          >
-            Events & Workshops
-          </span>
+          <span>Completed Events</span>
         </motion.h2>
 
         <Swiper
@@ -148,7 +137,7 @@ const EventsSection = () => {
             delay: 1500,
             disableOnInteraction: false,
           }}
-          loop={true} // Add this line to enable looping
+          loop={true}
           modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
           className="mySwiper"
         >

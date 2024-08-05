@@ -15,25 +15,25 @@ const DomainCard = ({ icon: Icon, title, description, color }) => {
 
   return (
     <motion.div
-      className="bg-gray-900 bg-opacity-70 rounded-lg p-6 cursor-pointer relative overflow-hidden"
+      className="bg-white rounded-lg p-6 cursor-pointer relative overflow-hidden shadow-md border border-gray-200"
       whileHover={{ scale: 1.05 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
     >
       <div className="flex items-center mb-4">
         <Icon className="text-4xl mr-4" style={{ color }} />
-        <h3 className="text-xl text-gray-200 font-bold">{title}</h3>
+        <h3 className="text-xl text-gray-800 font-bold">{title}</h3>
       </div>
-      <p className="text-gray-400 text-sm">{description}</p>
+      <p className="text-gray-600 text-sm">{description}</p>
       <AnimatePresence>
         {isHovered && (
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent flex items-center justify-center"
+            className="absolute inset-0 bg-gradient-to-r from-white to-transparent flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <span className="text-white font-bold">Learn More</span>
+            <span className="text-blue-600 font-bold">Learn More</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -46,55 +46,55 @@ const KnowledgeHubSection = () => {
     {
       icon: FaLaptopCode,
       title: "Software Engineering",
-      color: "#61DAFB",
+      color: "#3B82F6",
       description:
         "Explore best practices in software development and design patterns.",
     },
     {
       icon: FaNetworkWired,
       title: "Networking",
-      color: "#68A063",
+      color: "#10B981",
       description:
         "Understand network architectures and protocols essential for IT infrastructure.",
     },
     {
       icon: FaShieldAlt,
       title: "Cybersecurity",
-      color: "#FF6B6B",
+      color: "#EF4444",
       description:
         "Learn about protecting systems, networks, and programs from digital attacks.",
     },
     {
       icon: FaDatabase,
       title: "Database Management",
-      color: "#F29111",
+      color: "#F59E0B",
       description:
         "Master the art of organizing and managing large volumes of data efficiently.",
     },
     {
       icon: FaCloudUploadAlt,
       title: "Cloud Computing",
-      color: "#FF9900",
+      color: "#6366F1",
       description:
         "Discover cloud services and their implementation in modern IT solutions.",
     },
     {
       icon: FaBrain,
       title: "Artificial Intelligence",
-      color: "#00BFFF",
+      color: "#8B5CF6",
       description:
         "Dive into machine learning, neural networks, and AI applications.",
     },
   ];
 
   return (
-    <section className="py-20 px-4 overflow-hidden  relative">
+    <section className="py-20 px-4 overflow-hidden bg-gray-50 relative">
       {/* Animated background grid */}
       <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 gap-1 opacity-10">
         {[...Array(64)].map((_, i) => (
           <motion.div
             key={i}
-            className="bg-gray-500"
+            className="bg-gray-300"
             initial={{ opacity: 0 }}
             animate={{ opacity: [0.3, 1, 0.3] }}
             transition={{
@@ -113,17 +113,7 @@ const KnowledgeHubSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span
-            style={{
-              background: "linear-gradient(to right,#60A5FA, #A78BFA, #F87171)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              display: "inline-block",
-            }}
-          >
-            Knowledge Hub
-          </span>
+          <span>Knowledge Hub</span>
         </motion.h2>
 
         <motion.p
@@ -153,15 +143,15 @@ const KnowledgeHubSection = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <p className="text-xl text-gray-500 mb-8">
+          <p className="text-xl text-gray-600 mb-8">
             Unlock your potential in these cutting-edge IT domains with APIIT
             FCS.
           </p>
           <motion.button
-            className="bg-gradient-to-r from-gray-700 to-gray-900 text-white font-bold py-3 px-8 rounded-full text-lg border border-gray-600"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full text-lg"
             whileHover={{
               scale: 1.05,
-              boxShadow: "0 0 15px rgba(255, 255, 255, 0.3)",
+              boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)",
             }}
             whileTap={{ scale: 0.95 }}
           >

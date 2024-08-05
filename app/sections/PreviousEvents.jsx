@@ -7,20 +7,20 @@ const EventCard = ({ event, isExpanded, onToggle }) => {
   return (
     <motion.div
       layout
-      className={`bg-gray-900 bg-opacity-70 rounded-lg p-4 sm:p-6 cursor-pointer ${
+      className={`bg-white rounded-lg p-4 sm:p-6 cursor-pointer shadow-md border border-gray-200 ${
         isExpanded ? "col-span-1 md:col-span-2 row-span-1 md:row-span-2" : ""
       }`}
       onClick={onToggle}
     >
       <motion.h3
         layout="position"
-        className="text-xl sm:text-2xl font-bold mb-2"
+        className="text-xl sm:text-2xl font-bold mb-2 text-gray-800"
       >
         {event.title}
       </motion.h3>
       <motion.div
         layout="position"
-        className="flex items-center mb-2 text-gray-400 text-sm sm:text-base"
+        className="flex items-center mb-2 text-gray-600 text-sm sm:text-base"
       >
         <FaCalendar className="mr-2" />
         <span>{event.date}</span>
@@ -32,18 +32,18 @@ const EventCard = ({ event, isExpanded, onToggle }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <p className="text-gray-300 mb-4 text-sm sm:text-base">
+            <p className="text-gray-600 mb-4 text-sm sm:text-base">
               {event.description}
             </p>
-            <div className="flex items-center mb-2 text-gray-400 text-sm sm:text-base">
+            <div className="flex items-center mb-2 text-gray-600 text-sm sm:text-base">
               <FaClock className="mr-2" />
               <span>{event.time}</span>
             </div>
-            <div className="flex items-center mb-2 text-gray-400 text-sm sm:text-base">
+            <div className="flex items-center mb-2 text-gray-600 text-sm sm:text-base">
               <FaMapMarkerAlt className="mr-2" />
               <span>{event.location}</span>
             </div>
-            <div className="flex items-center text-gray-400 text-sm sm:text-base">
+            <div className="flex items-center text-gray-600 text-sm sm:text-base">
               <FaUsers className="mr-2" />
               <span>{event.capacity} participants</span>
             </div>
@@ -101,25 +101,15 @@ const EventsAndWorkshopsSection = () => {
   ];
 
   return (
-    <section className=" text-white py-12 sm:py-20 px-4">
+    <section className="bg-gray-100 py-12 sm:py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.h2
-          className="text-4xl sm:text-5xl md:text-7xl font-bold mb-8 sm:mb-12 text-center"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 sm:mb-12 text-center"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span
-            style={{
-              background: "linear-gradient(to right,#60A5FA, #A78BFA, #F87171)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              display: "inline-block",
-            }}
-          >
-            Events & Workshops
-          </span>
+          <span>Previous Events and Workshops</span>
         </motion.h2>
 
         <motion.div
@@ -144,7 +134,7 @@ const EventsAndWorkshopsSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <p className="text-lg sm:text-xl text-gray-500 mb-4 sm:mb-6">
+          <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
             Don't miss out on these exciting opportunities to learn, grow, and
             connect!
           </p>
@@ -155,10 +145,10 @@ const EventsAndWorkshopsSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <motion.button
-              className="bg-gradient-to-r text-center from-gray-700 to-gray-900 text-white font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full text-base sm:text-lg border border-gray-600"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full text-base sm:text-lg"
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 0 15px rgba(255, 255, 255, 0.3)",
+                boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)",
               }}
               whileTap={{ scale: 0.95 }}
             >

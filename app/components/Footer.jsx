@@ -18,7 +18,7 @@ const Footer = () => {
     { icon: <FaTwitter />, url: "#", color: "#1DA1F2" },
     { icon: <FaInstagram />, url: "#", color: "#E4405F" },
     { icon: <FaLinkedinIn />, url: "#", color: "#0A66C2" },
-    { icon: <FaGithub />, url: "#", color: "#ffffff" },
+    { icon: <FaGithub />, url: "#", color: "#333333" },
   ];
 
   const quickLinks = [
@@ -30,13 +30,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className=" text-white py-16 relative overflow-hidden">
+    <footer className="bg-gray-100 text-gray-800 py-16 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4">
         {/* Animated background elements */}
         {[FaCode, FaLaptopCode, FaServer].map((Icon, index) => (
           <motion.div
             key={index}
-            className="absolute text-gray-800 opacity-5"
+            className="absolute text-gray-600 opacity-10"
             style={{
               fontSize: `${Math.random() * 100 + 50}px`,
               top: `${Math.random() * 100}%`,
@@ -60,7 +60,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12">
           <div>
             <motion.div
-              className=" mb-4"
+              className="mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -89,7 +89,7 @@ const Footer = () => {
                 <motion.a
                   key={index}
                   href={link.url}
-                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                  className="text-gray-500 hover:text-gray-700 transition-colors duration-300"
                   whileHover={{ scale: 1.2, color: link.color }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -101,7 +101,7 @@ const Footer = () => {
 
           <div>
             <motion.h4
-              className="text-xl font-semibold mb-4"
+              className="text-xl font-semibold mb-4 text-gray-800"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -118,7 +118,7 @@ const Footer = () => {
                 <motion.li key={index} whileHover={{ x: 5 }}>
                   <a
                     href={link.url}
-                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                    className="text-gray-600 hover:text-gray-800 transition-colors duration-300"
                   >
                     {link.name}
                   </a>
@@ -129,7 +129,7 @@ const Footer = () => {
 
           <div>
             <motion.h4
-              className="text-xl font-semibold mb-4"
+              className="text-xl font-semibold mb-4 text-gray-800"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -137,7 +137,7 @@ const Footer = () => {
               Newsletter
             </motion.h4>
             <motion.p
-              className="text-gray-400 mb-4"
+              className="text-gray-600 mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
@@ -153,11 +153,11 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-gray-200  text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
+                className="bg-white text-gray-800 px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow border border-gray-300"
               />
               <button
                 type="submit"
-                className="bg-gray-500 text-white px-4 py-2 rounded-r-md hover:bg-gray-600 transition-colors duration-300"
+                className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition-colors duration-300"
               >
                 Subscribe
               </button>
@@ -166,12 +166,12 @@ const Footer = () => {
         </div>
 
         <motion.div
-          className="mt-12 pt-8 border-t border-gray-800 text-center"
+          className="mt-12 pt-8 border-t border-gray-300 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          <p className="text-gray-400">
+          <p className="text-gray-600">
             © {new Date().getFullYear()} APIIT Fullstack Computer Society. All
             rights reserved.
           </p>
