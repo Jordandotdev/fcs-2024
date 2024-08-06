@@ -56,7 +56,10 @@ const AboutPage = () => {
           <p className="text-xl text-center text-gray-600">
             APIIT Fullstack Computer Society is the premier student-led
             organization dedicated to fostering excellence in IT education and
-            innovation at Asia Pacific Institute of Information Technology.
+            innovation at Asia Pacific Institute of Information Technology. We
+            empower students with cutting-edge knowledge, practical skills, and
+            invaluable networking opportunities, preparing them for successful
+            careers in the ever-evolving tech landscape.
           </p>
         </div>
 
