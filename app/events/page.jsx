@@ -1,127 +1,21 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  FaCalendar,
-  FaClock,
-  FaMapMarkerAlt,
-  FaUsers,
-  FaCheckCircle,
-  FaHourglassHalf,
-} from "react-icons/fa";
+import React from "react";
+import FilteredGrid from "./_components/FilteredGrid";
 
-const EventCard = ({ event }) => {
-  return (
-    <motion.div
-      className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
-      whileHover={{ y: -5 }}
-    >
-      <div className="h-48 bg-gray-200 relative">
-        <img
-          src={event.image}
-          alt={event.title}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 rounded-bl-lg">
-          {event.category}
-        </div>
-      </div>
-      <div className="p-6">
-        <h3 className="text-xl font-bold mb-2 text-gray-800">{event.title}</h3>
-        <p className="text-gray-600 mb-4">{event.description}</p>
-        <div className="flex items-center text-gray-500 mb-2">
-          <FaCalendar className="mr-2" />
-          <span>{event.date}</span>
-        </div>
-        <div className="flex items-center text-gray-500 mb-2">
-          <FaClock className="mr-2" />
-          <span>{event.time}</span>
-        </div>
-        <div className="flex items-center text-gray-500 mb-2">
-          <FaMapMarkerAlt className="mr-2" />
-          <span>{event.location}</span>
-        </div>
-        <div className="flex items-center text-gray-500">
-          <FaUsers className="mr-2" />
-          <span>{event.capacity} participants</span>
-        </div>
-      </div>
-      <div className="px-6 py-4 bg-gray-100 flex justify-between items-center">
-        {event.status === "completed" ? (
-          <span className="text-green-600 flex items-center">
-            <FaCheckCircle className="mr-2" /> Completed
-          </span>
-        ) : (
-          <span className="text-yellow-600 flex items-center">
-            <FaHourglassHalf className="mr-2" /> Upcoming
-          </span>
-        )}
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          {event.status === "completed" ? "View Recap" : "Register Now"}
-        </button>
-      </div>
-    </motion.div>
-  );
+export const metadata = {
+  title: "Events | APIIT FCS",
+  description:
+    "Stay updated with the latest events organized by APIIT Fullstack Computer Society. From hackathons to workshops, we host a variety of events to help you grow your skills and network.",
+  keywords: [
+    "APIIT FCS events",
+    "APIIT events",
+    "hackathons",
+    "workshops",
+    "symposiums",
+    "tech events",
+  ],
 };
 
 const EventsPage = () => {
-  const [filter, setFilter] = useState("all");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState([]);
-
-  const allEvents = [
-    {
-      id: 1,
-      title: "Hackathon 2024",
-      description: "48-hour coding challenge to solve real-world problems.",
-      date: "2024-06-15",
-      time: "09:00 AM - 09:00 AM (48 hours)",
-      location: "Main Campus, Building A",
-      capacity: 100,
-      category: "Competition",
-      status: "upcoming",
-      image: "/images/bringo.jpeg",
-      series: false,
-    },
-    {
-      id: 2,
-      title: "Web Dev Workshop Series: Part 1",
-      description: "Introduction to modern web development frameworks.",
-      date: "2024-05-01",
-      time: "2:00 PM - 5:00 PM",
-      location: "Online",
-      capacity: 50,
-      category: "Workshop",
-      status: "upcoming",
-      image: "/images/ausentt.jpeg",
-      series: true,
-    },
-    {
-      id: 3,
-      title: "AI & Machine Learning Symposium",
-      description: "Exploring the latest trends in AI and ML.",
-      date: "2024-03-20",
-      time: "10:00 AM - 4:00 PM",
-      location: "Auditorium B",
-      capacity: 200,
-      category: "Symposium",
-      status: "completed",
-      image: "/images/skf.jpeg",
-      series: false,
-    },
-    // Add more events...
-  ];
-
-  useEffect(() => {
-    const filtered = allEvents.filter(
-      (event) =>
-        (filter === "all" || event.status === filter) &&
-        (event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          event.description.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
-    setFilteredEvents(filtered);
-  }, [filter, searchTerm]);
-
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen">
       {/* Hero Section */}
@@ -139,72 +33,7 @@ const EventsPage = () => {
         </div>
       </section>
 
-      {/* Filters and Search */}
-      <section className="max-w-6xl mx-auto py-12 px-4">
-        <div className="flex flex-wrap justify-between items-center mb-8">
-          <div className="flex space-x-4 mb-4 sm:mb-0">
-            <button
-              onClick={() => setFilter("all")}
-              className={`px-4 py-2 rounded-full ${
-                filter === "all"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-800"
-              }`}
-            >
-              All Events
-            </button>
-            <button
-              onClick={() => setFilter("upcoming")}
-              className={`px-4 py-2 rounded-full ${
-                filter === "upcoming"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-800"
-              }`}
-            >
-              Upcoming
-            </button>
-            <button
-              onClick={() => setFilter("completed")}
-              className={`px-4 py-2 rounded-full ${
-                filter === "completed"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-800"
-              }`}
-            >
-              Completed
-            </button>
-          </div>
-          <input
-            type="text"
-            placeholder="Search events..."
-            className="w-full sm:w-auto px-4 py-2 bg-white border border-gray-300 rounded-full"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-
-        {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
-            {filteredEvents.map((event) => (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <EventCard event={event} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {filteredEvents.length === 0 && (
-          <p className="text-center text-gray-500 mt-12">
-            No events found matching your criteria.
-          </p>
-        )}
-      </section>
+      <FilteredGrid />
 
       {/* Newsletter Signup */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-16 text-white">
