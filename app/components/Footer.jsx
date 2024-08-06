@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   FaFacebookF,
   FaTwitter,
@@ -10,6 +11,7 @@ import {
   FaCode,
   FaLaptopCode,
   FaServer,
+  FaHeart,
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -22,21 +24,26 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: "Home", url: "#" },
-    { name: "About Us", url: "#" },
-    { name: "Events", url: "#" },
-    { name: "Projects", url: "#" },
-    { name: "Contact", url: "#" },
+    { name: "Home", url: "/" },
+    { name: "About Us", url: "/about" },
+    { name: "Events", url: "/events" },
+    { name: "Join us", url: "/join" },
+    { name: "Contact", url: "/contact" },
+  ];
+
+  const moreInfo = [
+    { name: "Industry Partnerships", url: "/industry-partnerships" },
+    { name: "Event Partnerships", url: "/event-partnerships" },
   ];
 
   return (
-    <footer className="bg-gray-100 text-gray-800 py-16 relative overflow-hidden">
+    <footer className="bg-gray-900 text-white py-12 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4">
         {/* Animated background elements */}
         {[FaCode, FaLaptopCode, FaServer].map((Icon, index) => (
           <motion.div
             key={index}
-            className="absolute text-gray-600 opacity-10"
+            className="absolute text-gray-800 opacity-5"
             style={{
               fontSize: `${Math.random() * 100 + 50}px`,
               top: `${Math.random() * 100}%`,
@@ -57,8 +64,8 @@ const Footer = () => {
           </motion.div>
         ))}
 
-        <div className="grid md:grid-cols-3 gap-12">
-          <div>
+        <div className="grid md:grid-cols-4 gap-8">
+          <div className="md:col-span-2">
             <motion.div
               className="mb-4"
               initial={{ opacity: 0, y: 20 }}
@@ -66,18 +73,19 @@ const Footer = () => {
               transition={{ duration: 0.5 }}
             >
               <img
-                src="/images/logo.png"
+                src="/images/logo-2.png"
                 alt="FCS Logo"
                 className="h-12 w-auto"
               />
             </motion.div>
             <motion.p
-              className="text-gray-600 mb-6"
+              className="text-gray-400 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Empowering the next generation of fullstack developers.
+              Empowering the next generation of fullstack developers. Join us in
+              our mission to innovate, learn, and grow together.
             </motion.p>
             <motion.div
               className="flex space-x-4"
@@ -89,7 +97,7 @@ const Footer = () => {
                 <motion.a
                   key={index}
                   href={link.url}
-                  className="text-gray-500 hover:text-gray-700 transition-colors duration-300"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
                   whileHover={{ scale: 1.2, color: link.color }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -101,7 +109,7 @@ const Footer = () => {
 
           <div>
             <motion.h4
-              className="text-xl font-semibold mb-4 text-gray-800"
+              className="text-xl font-semibold mb-4 text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -116,12 +124,11 @@ const Footer = () => {
             >
               {quickLinks.map((link, index) => (
                 <motion.li key={index} whileHover={{ x: 5 }}>
-                  <a
-                    href={link.url}
-                    className="text-gray-600 hover:text-gray-800 transition-colors duration-300"
-                  >
-                    {link.name}
-                  </a>
+                  <Link href={link.url}>
+                    <span className="text-gray-400 hover:text-white transition-colors duration-300">
+                      {link.name}
+                    </span>
+                  </Link>
                 </motion.li>
               ))}
             </motion.ul>
@@ -129,51 +136,45 @@ const Footer = () => {
 
           <div>
             <motion.h4
-              className="text-xl font-semibold mb-4 text-gray-800"
+              className="text-xl font-semibold mb-4 text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Newsletter
+              More Information
             </motion.h4>
-            <motion.p
-              className="text-gray-600 mb-4"
+            <motion.ul
+              className="space-y-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
-              Stay updated with our latest events and news.
-            </motion.p>
-            <motion.form
-              className="flex"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="bg-white text-gray-800 px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow border border-gray-300"
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition-colors duration-300"
-              >
-                Subscribe
-              </button>
-            </motion.form>
+              {moreInfo.map((link, index) => (
+                <motion.li key={index} whileHover={{ x: 5 }}>
+                  <Link href={link.url}>
+                    <span className="text-gray-400 hover:text-white transition-colors duration-300">
+                      {link.name}
+                    </span>
+                  </Link>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
         </div>
 
         <motion.div
-          className="mt-12 pt-8 border-t border-gray-300 text-center"
+          className="mt-12 pt-8 border-t border-gray-700 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             © {new Date().getFullYear()} APIIT Fullstack Computer Society. All
             rights reserved.
+          </p>
+          <p className="text-gray-500 mt-2 text-sm">
+            Developed with <FaHeart className="inline-block text-red-500" /> by
+            Randil Withanage
           </p>
         </motion.div>
       </div>

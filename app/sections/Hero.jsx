@@ -182,10 +182,10 @@ const HeroSection = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-          <Link href="/join">
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 w-full max-w-md mx-auto">
+          <Link href="/join" className="w-full sm:w-auto">
             <motion.button
-              className="relative px-6 sm:px-8 py-3 rounded-full overflow-hidden group"
+              className="w-full sm:w-auto relative px-6 sm:px-8 py-3 rounded-full overflow-hidden group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -195,9 +195,9 @@ const HeroSection = () => {
               </span>
             </motion.button>
           </Link>
-          <Link href="/events">
+          <Link href="/events" className="w-full sm:w-auto">
             <motion.button
-              className="px-6 sm:px-8 py-3 rounded-full bg-transparent border-2 border-indigo-500 text-indigo-600 font-bold text-base sm:text-lg hover:bg-indigo-500 hover:text-white transition duration-300"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 rounded-full bg-transparent border-2 border-indigo-500 text-indigo-600 font-bold text-base sm:text-lg hover:bg-indigo-500 hover:text-white transition duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -212,11 +212,11 @@ const HeroSection = () => {
         {codeSnippets.map((snippet, index) => (
           <motion.div
             key={index}
-            className="absolute text-xs sm:text-lg font-mono opacity-60 whitespace-nowrap text-gray-700"
+            className="absolute text-xs sm:text-sm md:text-base font-mono opacity-60 whitespace-nowrap text-gray-700"
             style={{
-              top: `${25 * (index + 1)}%`,
-              left: index % 2 === 0 ? "10%" : "auto",
-              right: index % 2 === 1 ? "10%" : "auto",
+              top: `${(index + 1) * 20}%`,
+              left: index % 2 === 0 ? "5%" : "auto",
+              right: index % 2 === 1 ? "5%" : "auto",
             }}
             animate={{
               y: [0, -10, 0],
