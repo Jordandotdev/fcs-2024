@@ -172,10 +172,10 @@ const Footer = () => {
             © {new Date().getFullYear()} APIIT Fullstack Computer Society. All
             rights reserved.
           </p>
-          <p className="text-gray-500 mt-2 text-sm">
+          {/* <p className="text-gray-500 mt-2 text-sm">
             Developed with <FaHeart className="inline-block text-red-500" /> by
             Randil Withanage
-          </p>
+          </p> */}
         </motion.div>
       </div>
     </footer>
