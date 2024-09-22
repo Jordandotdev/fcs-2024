@@ -1,8 +1,7 @@
-import React, { cache } from "react";
+import React from "react";
 import AboutTabs from "./_components/AboutTabs";
 import FeaturesSection from "./_components/FeaturesSection";
 import CTASection from "./_components/CTASection";
-
 import config from "../strapi/config";
 
 export const metadata = {
@@ -17,24 +16,33 @@ export const metadata = {
     "innovation in IT",
     "Asia Pacific Institute of Information Technology",
   ],
-  author: "Randil Withanage",
+  author: "Randil Withanage & Jordan Ferdinando",
   description:
     "APIIT Fullstack Computer Society is the premier student-led organization dedicated to fostering excellence in IT education and innovation at Asia Pacific Institute of Information Technology.",
 };
 
+
 const fetchAboutPageData = async () => {
   const reqOptions = {
     headers: {
-      Authorization: `Bearer ${config.strapi.jwt}`,
+      Authorization: `Bearer ${process.env.GET_ABOUT_API_TOKEN}`,
+      cache: 'no-store',
     },
   };
-  const response = await fetch(`${config.strapi.api}/about-page?populate=*`, reqOptions);
+  const response = await fetch(
+    `${config.api}/api/about?populate[History][populate][HistoryRecord][populate]=true`,
+    reqOptions
+  );
   const resData = await response.json();
-  console.log("About Page Data", resData.data);
-  return resData.data;
+  console.log(resData);
+  return resData.data; 
 };
 
+
 const AboutPage = async () => {
+  const aboutData = await fetchAboutPageData();
+  const { Title, Description, History } = aboutData.attributes; 
+
   return (
     <div className="bg-white text-gray-800 min-h-screen">
       {/* Hero Section */}
@@ -64,26 +72,20 @@ const AboutPage = async () => {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Shaping the Future of IT
+              {Title}
             </span>
           </h2>
           <p className="text-xl text-center text-gray-600">
-            APIIT Fullstack Computer Society is the premier student-led
-            organization dedicated to fostering excellence in IT education and
-            innovation at Asia Pacific Institute of Information Technology. We
-            empower students with cutting-edge knowledge, practical skills, and
-            invaluable networking opportunities, preparing them for successful
-            careers in the ever-evolving tech landscape.
+            {Description[0]?.children[0]?.text} 
           </p>
         </div>
 
-        {/* Tabs */}
-        <AboutTabs />
+        <AboutTabs history={History} />
       </section>
 
       {/* Features Section */}
-
       <FeaturesSection />
+
       {/* CTA Section */}
       <CTASection />
     </div>

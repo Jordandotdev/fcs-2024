@@ -9,7 +9,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
-const AboutTabs = () => {
+const AboutTabs = ({ aboutData }) => {
   const [activeTab, setActiveTab] = useState("mission");
   const [selectedYear, setSelectedYear] = useState("2024");
 
@@ -20,7 +20,7 @@ const AboutTabs = () => {
     { id: "partners", label: "Our Partners", icon: FaHandshake },
   ];
 
-  const years = ["2024", "2023"];
+  const years = ["2024", "2023"]; // Placeholder for team members' years
 
   const teamMembers = {
     2024: [
@@ -45,13 +45,11 @@ const AboutTabs = () => {
     mission: (
       <div>
         <h3 className="text-2xl font-bold mb-4 text-gray-800">
-          Empowering Future Tech Leaders
+          {aboutData?.Title || "Empowering Future Tech Leaders"}
         </h3>
         <p className="mb-4 text-gray-600">
-          APIIT FCS is dedicated to fostering a community of innovative and
-          skilled IT professionals. Our mission is to bridge the gap between
-          academic knowledge and industry demands, preparing our members for
-          successful careers in the ever-evolving tech landscape.
+          {/* For now, use placeholder content until Strapi API is built */}
+          {aboutData?.Description || "Mission details go here."}
         </p>
         <ul className="list-disc pl-5 space-y-2 text-gray-600">
           <li>Provide cutting-edge workshops and seminars</li>
@@ -64,43 +62,29 @@ const AboutTabs = () => {
     history: (
       <div>
         <h3 className="text-2xl font-bold mb-4 text-gray-800">
-          A Legacy of Excellence
+          {aboutData?.History?.Title || "A Legacy of Excellence"}
         </h3>
         <div className="space-y-4 text-gray-600">
-          <div>
-            <h4 className="font-semibold">2010 - Founding</h4>
-            <p>
-              APIIT FCS was established with a vision to create a hub for IT
-              enthusiasts.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold">2015 - Expansion</h4>
-            <p>
-              Launched our first inter-university hackathon, drawing
-              participants from across the country.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold">2020 - Digital Transformation</h4>
-            <p>
-              Successfully transitioned to virtual events, expanding our reach
-              and impact.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold">Today</h4>
-            <p>Continuing to innovate and lead in the academic IT community.</p>
-          </div>
+          {aboutData?.History?.HistoryRecord?.map((record) => (
+            <div key={record.id}>
+              <h4 className="font-semibold">
+                {record.StartDate} - {record.Title}
+              </h4>
+              <p>{record.Description}</p>
+            </div>
+          )) || (
+            <div>
+              <h4 className="font-semibold">2010 - Founding</h4>
+              <p>APIIT FCS was established with a vision to create a hub for IT enthusiasts.</p>
+            </div>
+          )}
         </div>
       </div>
     ),
     team: (
       <div>
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-2xl font-bold text-gray-800">
-            Our Executive Committee
-          </h3>
+          <h3 className="text-2xl font-bold text-gray-800">Our Executive Committee</h3>
           <div className="relative">
             <select
               value={selectedYear}
@@ -140,18 +124,9 @@ const AboutTabs = () => {
     ),
     partners: (
       <div>
-        <h3 className="text-2xl font-bold mb-4 text-gray-800">
-          Our Valued Partners
-        </h3>
+        <h3 className="text-2xl font-bold mb-4 text-gray-800">Our Valued Partners</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-          {[
-            "Partner 1",
-            "Partner 2",
-            "Partner 3",
-            "Partner 4",
-            "Partner 5",
-            "Partner 6",
-          ].map((partner) => (
+          {[ "Partner 1", "Partner 2", "Partner 3", "Partner 4", "Partner 5", "Partner 6" ].map((partner) => (
             <div
               key={partner}
               className="bg-gray-100 h-24 flex items-center justify-center rounded-lg border border-gray-200"
@@ -163,6 +138,7 @@ const AboutTabs = () => {
       </div>
     ),
   };
+
   return (
     <>
       <div className="mb-8">
