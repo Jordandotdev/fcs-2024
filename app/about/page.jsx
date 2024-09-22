@@ -1,7 +1,9 @@
-import React from "react";
+import React, { cache } from "react";
 import AboutTabs from "./_components/AboutTabs";
 import FeaturesSection from "./_components/FeaturesSection";
 import CTASection from "./_components/CTASection";
+
+import config from "../strapi/config";
 
 export const metadata = {
   title: "About APIIT FCS",
@@ -20,7 +22,19 @@ export const metadata = {
     "APIIT Fullstack Computer Society is the premier student-led organization dedicated to fostering excellence in IT education and innovation at Asia Pacific Institute of Information Technology.",
 };
 
-const AboutPage = () => {
+const fetchAboutPageData = async () => {
+  const reqOptions = {
+    headers: {
+      Authorization: `Bearer ${config.strapi.jwt}`,
+    },
+  };
+  const response = await fetch(`${config.strapi.api}/about-page?populate=*`, reqOptions);
+  const resData = await response.json();
+  console.log("About Page Data", resData.data);
+  return resData.data;
+};
+
+const AboutPage = async () => {
   return (
     <div className="bg-white text-gray-800 min-h-screen">
       {/* Hero Section */}
