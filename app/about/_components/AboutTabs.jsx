@@ -63,8 +63,8 @@ const AboutTabs = ({ History }) => {
         <h3 className="text-2xl font-bold mb-4 text-gray-800">
           {History?.Title || "A Legacy of Excellence"}
         </h3>
-        {/* <div className="space-y-4 text-gray-600">
-          {History?.map((record) => (
+        <div className="space-y-4 text-gray-600">
+          {History?.HistoryRecord?.map((record) => (
             <div key={record.id}>
               <h4 className="font-semibold">
                 {record.StartDate} - {record.Title}
@@ -77,7 +77,7 @@ const AboutTabs = ({ History }) => {
               <p>APIIT FCS was established with a vision to create a hub for IT enthusiasts.</p>
             </div>
           )}
-        </div> */}
+        </div>
       </div>
     ),
     team: (
