@@ -33,13 +33,13 @@ const fetchAboutPageData = async () => {
     reqOptions
   );
   const resData = await response.json();
-  console.log(resData);
   return resData.data; 
 };
 
 const AboutPage = async () => {
   const aboutData = await fetchAboutPageData();
   const { Title, Description, History } = aboutData.attributes; 
+  const { HistoryRecord } = aboutData.attributes.History;
 
   return (
     <div className="bg-white text-gray-800 min-h-screen">
@@ -78,7 +78,7 @@ const AboutPage = async () => {
           </p>
         </div>
 
-        <AboutTabs history={History} />
+        <AboutTabs History={History} />
       </section>
 
       {/* Features Section */}

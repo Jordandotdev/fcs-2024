@@ -1,6 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaChevronDown,
   FaGraduationCap,
@@ -9,7 +9,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
-const AboutTabs = ({ aboutData }) => {
+const AboutTabs = ({ History }) => {
   const [activeTab, setActiveTab] = useState("mission");
   const [selectedYear, setSelectedYear] = useState("2024");
 
@@ -45,11 +45,10 @@ const AboutTabs = ({ aboutData }) => {
     mission: (
       <div>
         <h3 className="text-2xl font-bold mb-4 text-gray-800">
-          {aboutData?.Title || "Empowering Future Tech Leaders"}
+          Empowering Future Tech Leaders
         </h3>
         <p className="mb-4 text-gray-600">
-          {/* For now, use placeholder content until Strapi API is built */}
-          {aboutData?.Description || "Mission details go here."}
+            "We aim to provide students with the knowledge and skills they need to become leaders in the tech industry.
         </p>
         <ul className="list-disc pl-5 space-y-2 text-gray-600">
           <li>Provide cutting-edge workshops and seminars</li>
@@ -62,10 +61,10 @@ const AboutTabs = ({ aboutData }) => {
     history: (
       <div>
         <h3 className="text-2xl font-bold mb-4 text-gray-800">
-          {aboutData?.History?.Title || "A Legacy of Excellence"}
+          {History?.Title || "A Legacy of Excellence"}
         </h3>
-        <div className="space-y-4 text-gray-600">
-          {aboutData?.History?.HistoryRecord?.map((record) => (
+        {/* <div className="space-y-4 text-gray-600">
+          {History?.map((record) => (
             <div key={record.id}>
               <h4 className="font-semibold">
                 {record.StartDate} - {record.Title}
@@ -78,7 +77,7 @@ const AboutTabs = ({ aboutData }) => {
               <p>APIIT FCS was established with a vision to create a hub for IT enthusiasts.</p>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     ),
     team: (
@@ -126,7 +125,7 @@ const AboutTabs = ({ aboutData }) => {
       <div>
         <h3 className="text-2xl font-bold mb-4 text-gray-800">Our Valued Partners</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-          {[ "Partner 1", "Partner 2", "Partner 3", "Partner 4", "Partner 5", "Partner 6" ].map((partner) => (
+        {[ "Partner 1", "Partner 2", "Partner 3", "Partner 4", "Partner 5", "Partner 6" ].map((partner) => (
             <div
               key={partner}
               className="bg-gray-100 h-24 flex items-center justify-center rounded-lg border border-gray-200"
