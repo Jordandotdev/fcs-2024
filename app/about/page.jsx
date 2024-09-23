@@ -21,13 +21,12 @@ export const metadata = {
     "APIIT Fullstack Computer Society is the premier student-led organization dedicated to fostering excellence in IT education and innovation at Asia Pacific Institute of Information Technology.",
 };
 
-
 const fetchAboutPageData = async () => {
   const reqOptions = {
     headers: {
       Authorization: `Bearer ${process.env.GET_ABOUT_API_TOKEN}`,
-      cache: 'no-store',
     },
+    cache: 'no-store',
   };
   const response = await fetch(
     `${config.api}/api/about?populate[History][populate][HistoryRecord][populate]=true`,
@@ -37,7 +36,6 @@ const fetchAboutPageData = async () => {
   console.log(resData);
   return resData.data; 
 };
-
 
 const AboutPage = async () => {
   const aboutData = await fetchAboutPageData();
