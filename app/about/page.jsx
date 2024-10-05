@@ -1,8 +1,14 @@
+// component and dependency imports
 import React from "react";
 import AboutTabs from "./_components/AboutTabs";
 import FeaturesSection from "./_components/FeaturesSection";
 import CTASection from "./_components/CTASection";
-import config from "../strapi/config";
+
+//service imports
+import {
+  fetchAboutHistoryPageData,
+  fetchAboutPageData,
+} from "../strapi/api/GET/GET_About";
 
 export const metadata = {
   title: "About APIIT FCS",
@@ -21,25 +27,11 @@ export const metadata = {
     "APIIT Fullstack Computer Society is the premier student-led organization dedicated to fostering excellence in IT education and innovation at Asia Pacific Institute of Information Technology.",
 };
 
-const fetchAboutPageData = async () => {
-  const reqOptions = {
-    headers: {
-      Authorization: `Bearer ${process.env.GET_ABOUT_API_TOKEN}`,
-    },
-    cache: 'no-store',
-  };
-  const response = await fetch(
-    `${config.api}/api/about?populate[History][populate][HistoryRecord][populate]=true`,
-    reqOptions
-  );
-  const resData = await response.json();
-  return resData.data; 
-};
-
 const AboutPage = async () => {
   const aboutData = await fetchAboutPageData();
-  const { Title, Description, History } = aboutData.attributes; 
-  const { HistoryRecord } = aboutData.attributes.History;
+  const aboutHistoryData = await fetchAboutHistoryPageData();
+  const { Title, Description} = aboutData.attributes
+  const { aboutHistory } = aboutHistoryData.attributes;
 
   return (
     <div className="bg-white text-gray-800 min-h-screen">
@@ -74,11 +66,11 @@ const AboutPage = async () => {
             </span>
           </h2>
           <p className="text-xl text-center text-gray-600">
-            {Description[0]?.children[0]?.text} 
+            {Description[0]?.children[0]?.text}
           </p>
         </div>
 
-        <AboutTabs History={History} />
+        <AboutTabs History={aboutHistory} />
       </section>
 
       {/* Features Section */}
