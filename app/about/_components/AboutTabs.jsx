@@ -1,4 +1,5 @@
 "use client";
+import DateTemplate from "@/app/strapi/services/dateTemplate";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import {
@@ -9,7 +10,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
-const AboutTabs = ({ History }) => {
+const AboutTabs = ({ History, Mission }) => {
   const [activeTab, setActiveTab] = useState("mission");
   const [selectedYear, setSelectedYear] = useState("2024");
 
@@ -45,17 +46,25 @@ const AboutTabs = ({ History }) => {
     mission: (
       <div>
         <h3 className="text-2xl font-bold mb-4 text-gray-800">
-          Empowering Future Tech Leaders
+          {Mission?.MissionTitle || "Empowering Future Tech Leaders"}
         </h3>
         <p className="mb-4 text-gray-600">
-            "We aim to provide students with the knowledge and skills they need to become leaders in the tech industry.
+          {Mission?.MissionDescription ||
+            '"We aim to provide students with the knowledge and skills they need to become leaders in the tech industry.'}
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-gray-600">
-          <li>Provide cutting-edge workshops and seminars</li>
-          <li>Facilitate networking opportunities with industry leaders</li>
-          <li>Encourage collaborative projects and research</li>
-          <li>Promote ethical and responsible use of technology</li>
-        </ul>
+
+        {Mission?.shortTxt?.map((txt) => (
+          <ul className="list-disc pl-5 space-y-2 text-gray-600">
+            <li key={txt.id}>{txt.shortTxt}</li>
+          </ul>
+        )) || (
+          <ul className="list-disc pl-5 space-y-2 text-gray-600">
+            <li>Provide cutting-edge workshops and seminars</li>
+            <li>Facilitate networking opportunities with industry leaders</li>
+            <li>Encourage collaborative projects and research</li>
+            <li>Promote ethical and responsible use of technology</li>
+          </ul>
+        )}
       </div>
     ),
     history: (
@@ -67,14 +76,17 @@ const AboutTabs = ({ History }) => {
           {History?.HistoryRecord?.map((record) => (
             <div key={record.id}>
               <h4 className="font-semibold">
-                {record.StartDate} - {record.Title}
+                {DateTemplate(record.StartDate)} - {record.Title}
               </h4>
               <p>{record.Description}</p>
             </div>
           )) || (
             <div>
               <h4 className="font-semibold">2010 - Founding</h4>
-              <p>APIIT FCS was established with a vision to create a hub for IT enthusiasts.</p>
+              <p>
+                APIIT FCS was established with a vision to create a hub for IT
+                enthusiasts.
+              </p>
             </div>
           )}
         </div>
@@ -83,7 +95,9 @@ const AboutTabs = ({ History }) => {
     team: (
       <div>
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-2xl font-bold text-gray-800">Our Executive Committee</h3>
+          <h3 className="text-2xl font-bold text-gray-800">
+            Our Executive Committee
+          </h3>
           <div className="relative">
             <select
               value={selectedYear}
@@ -123,9 +137,18 @@ const AboutTabs = ({ History }) => {
     ),
     partners: (
       <div>
-        <h3 className="text-2xl font-bold mb-4 text-gray-800">Our Valued Partners</h3>
+        <h3 className="text-2xl font-bold mb-4 text-gray-800">
+          Our Valued Partners
+        </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-        {[ "Partner 1", "Partner 2", "Partner 3", "Partner 4", "Partner 5", "Partner 6" ].map((partner) => (
+          {[
+            "Partner 1",
+            "Partner 2",
+            "Partner 3",
+            "Partner 4",
+            "Partner 5",
+            "Partner 6",
+          ].map((partner) => (
             <div
               key={partner}
               className="bg-gray-100 h-24 flex items-center justify-center rounded-lg border border-gray-200"

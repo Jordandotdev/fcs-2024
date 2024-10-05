@@ -6,6 +6,7 @@ import CTASection from "./_components/CTASection";
 
 //service imports
 import {
+  fetchAboutMissionData,
   fetchAboutHistoryPageData,
   fetchAboutPageData,
 } from "../strapi/api/GET/GET_About";
@@ -29,9 +30,11 @@ export const metadata = {
 
 const AboutPage = async () => {
   const aboutData = await fetchAboutPageData();
+  const aboutMissionData = await fetchAboutMissionData();
   const aboutHistoryData = await fetchAboutHistoryPageData();
 
   const { Title, Description} = aboutData.attributes
+  const { Mission } = aboutMissionData.attributes;
   const { History } = aboutHistoryData.attributes;
 
   return (
@@ -71,7 +74,7 @@ const AboutPage = async () => {
           </p>
         </div>
 
-        <AboutTabs History={History} />
+        <AboutTabs History={History} Mission={Mission}/>
       </section>
 
       {/* Features Section */}
