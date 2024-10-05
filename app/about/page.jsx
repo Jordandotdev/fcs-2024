@@ -30,8 +30,9 @@ export const metadata = {
 const AboutPage = async () => {
   const aboutData = await fetchAboutPageData();
   const aboutHistoryData = await fetchAboutHistoryPageData();
+
   const { Title, Description} = aboutData.attributes
-  const { aboutHistory } = aboutHistoryData.attributes;
+  const { History } = aboutHistoryData.attributes;
 
   return (
     <div className="bg-white text-gray-800 min-h-screen">
@@ -70,7 +71,7 @@ const AboutPage = async () => {
           </p>
         </div>
 
-        <AboutTabs History={aboutHistory} />
+        <AboutTabs History={History} />
       </section>
 
       {/* Features Section */}
