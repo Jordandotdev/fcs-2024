@@ -10,9 +10,12 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
-const AboutTabs = ({ History, Mission }) => {
+const AboutTabs = ({ History, Mission, Team }) => {
   const [activeTab, setActiveTab] = useState("mission");
-  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedYear, setSelectedYear] = useState(null);
+  const [teamMembers, setTeamMembers] = useState({});
+
+  const uniqueYears = [...new Set(Team.map(item => item.Year))].sort((a, b) => b - a);
 
   const tabs = [
     { id: "mission", label: "Our Mission", icon: FaGraduationCap },
@@ -21,26 +24,24 @@ const AboutTabs = ({ History, Mission }) => {
     { id: "partners", label: "Our Partners", icon: FaHandshake },
   ];
 
-  const years = ["2024", "2023"]; // Placeholder for team members' years
+  useEffect(() => {
+    const members = {};
+    uniqueYears.forEach(year => {
+      members[year] = Team.filter(item => item.Year === year).flatMap(member =>
+        member.UserInfo.map(user => ({
+          role: user.TeamRole,
+          name: user.TeamMemberName
+        }))
+      );
+    });
+    setTeamMembers(members);
+  }, [Team, uniqueYears]);
 
-  const teamMembers = {
-    2024: [
-      { role: "President", name: "John Doe" },
-      { role: "Vice President", name: "Jane Smith" },
-      { role: "Secretary", name: "Mike Johnson" },
-      { role: "Treasurer", name: "Emily Brown" },
-      { role: "Tech Lead", name: "Chris Lee" },
-      { role: "Event Coordinator", name: "Sarah Wilson" },
-    ],
-    2023: [
-      { role: "President", name: "Alex Turner" },
-      { role: "Vice President", name: "Olivia Martinez" },
-      { role: "Secretary", name: "Daniel Kim" },
-      { role: "Treasurer", name: "Sophie Chen" },
-      { role: "Tech Lead", name: "Ryan Patel" },
-      { role: "Event Coordinator", name: "Emma Rodriguez" },
-    ],
-  };
+  useEffect(() => {
+    if (uniqueYears.length > 0 && !selectedYear) {
+      setSelectedYear(uniqueYears[0]);
+    }
+  }, [uniqueYears, selectedYear]);
 
   const tabContent = {
     mission: (
@@ -50,14 +51,16 @@ const AboutTabs = ({ History, Mission }) => {
         </h3>
         <p className="mb-4 text-gray-600">
           {Mission?.MissionDescription ||
-            '"We aim to provide students with the knowledge and skills they need to become leaders in the tech industry.'}
+            "We aim to provide students with the knowledge and skills they need to become leaders in the tech industry."}
         </p>
 
-        {Mission?.shortTxt?.map((txt) => (
+        {(Mission?.shortTxt && Mission.shortTxt.length > 0) ? (
           <ul className="list-disc pl-5 space-y-2 text-gray-600">
-            <li key={txt.id}>{txt.shortTxt}</li>
+            {Mission.shortTxt.map((txt) => (
+              <li key={txt.id}>{txt.shortTxt}</li>
+            ))}
           </ul>
-        )) || (
+        ) : (
           <ul className="list-disc pl-5 space-y-2 text-gray-600">
             <li>Provide cutting-edge workshops and seminars</li>
             <li>Facilitate networking opportunities with industry leaders</li>
@@ -73,14 +76,16 @@ const AboutTabs = ({ History, Mission }) => {
           {History?.Title || "A Legacy of Excellence"}
         </h3>
         <div className="space-y-4 text-gray-600">
-          {History?.HistoryRecord?.map((record) => (
-            <div key={record.id}>
-              <h4 className="font-semibold">
-                {DateTemplate(record.StartDate)} - {record.Title}
-              </h4>
-              <p>{record.Description}</p>
-            </div>
-          )) || (
+          {(History?.HistoryRecord && History.HistoryRecord.length > 0) ? (
+            History.HistoryRecord.map((record) => (
+              <div key={record.id}>
+                <h4 className="font-semibold">
+                  {DateTemplate(record.StartDate)} - {record.Title}
+                </h4>
+                <p>{record.Description}</p>
+              </div>
+            ))
+          ) : (
             <div>
               <h4 className="font-semibold">2010 - Founding</h4>
               <p>
@@ -100,11 +105,11 @@ const AboutTabs = ({ History, Mission }) => {
           </h3>
           <div className="relative">
             <select
-              value={selectedYear}
+              value={selectedYear || ""}
               onChange={(e) => setSelectedYear(e.target.value)}
               className="appearance-none bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
             >
-              {years.map((year) => (
+              {uniqueYears.map((year) => (
                 <option key={year} value={year}>
                   {year}
                 </option>
@@ -124,13 +129,17 @@ const AboutTabs = ({ History, Mission }) => {
             transition={{ duration: 0.3 }}
             className="grid grid-cols-2 md:grid-cols-3 gap-4"
           >
-            {teamMembers[selectedYear].map((member, index) => (
-              <div key={index} className="text-center">
-                <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-2"></div>
-                <h4 className="font-semibold text-gray-800">{member.role}</h4>
-                <p className="text-sm text-gray-600">{member.name}</p>
-              </div>
-            ))}
+            {teamMembers[selectedYear]?.length > 0 ? (
+              teamMembers[selectedYear].map((member, index) => (
+                <div key={index} className="text-center">
+                  <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-2"></div>
+                  <h4 className="font-semibold text-gray-800">{member.name}</h4>
+                  <p className="text-sm text-gray-600">{member.role}</p>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-600">No team members found for this year.</p>
+            )}
           </motion.div>
         </AnimatePresence>
       </div>

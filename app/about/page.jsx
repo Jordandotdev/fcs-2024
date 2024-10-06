@@ -9,6 +9,7 @@ import {
   fetchAboutMissionData,
   fetchAboutHistoryPageData,
   fetchAboutPageData,
+  fetchAboutTeamPageData,
 } from "../strapi/api/GET/GET_About";
 
 export const metadata = {
@@ -32,10 +33,12 @@ const AboutPage = async () => {
   const aboutData = await fetchAboutPageData();
   const aboutMissionData = await fetchAboutMissionData();
   const aboutHistoryData = await fetchAboutHistoryPageData();
+  const aboutTeamData = await fetchAboutTeamPageData();
 
-  const { Title, Description} = aboutData.attributes
+  const { Title, Description } = aboutData.attributes;
   const { Mission } = aboutMissionData.attributes;
   const { History } = aboutHistoryData.attributes;
+  const { Team } = aboutTeamData.attributes;
 
   return (
     <div className="bg-white text-gray-800 min-h-screen">
@@ -74,7 +77,7 @@ const AboutPage = async () => {
           </p>
         </div>
 
-        <AboutTabs History={History} Mission={Mission}/>
+        <AboutTabs History={History} Mission={Mission} Team={Team} />
       </section>
 
       {/* Features Section */}

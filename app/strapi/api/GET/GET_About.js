@@ -45,3 +45,17 @@ export const fetchAboutHistoryPageData = async () => {
   return resData.data;
 };
 
+export const fetchAboutTeamPageData = async () => {
+  const reqOptions = {
+    headers: {
+      Authorization: `Bearer ${process.env.GET_ABOUT_API_TOKEN}`,
+    },
+    cache: "no-store",
+  };
+  const response = await fetch(
+    `${config.api}/api/about?populate[Team][populate][UserInfo][populate]=true`,
+    reqOptions
+  );
+  const resData = await response.json();
+  return resData.data;
+};
